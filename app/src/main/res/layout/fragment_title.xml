@@ -17,11 +17,13 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/startButtonText"
+            android:onClick="@{()->titleFragmentViewModel.onStartTracking()}"
             app:layout_constraintBottom_toTopOf="@+id/scrollView2"
             app:layout_constraintEnd_toStartOf="@+id/stopButton"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            android:enabled="@{titleFragmentViewModel.startButtonVisible}"/>
 
         <Button
             android:id="@+id/stopButton"
@@ -29,11 +31,13 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/stopButtonText"
+            android:onClick="@{()->titleFragmentViewModel.onStopTracking()}"
             app:layout_constraintBottom_toTopOf="@+id/scrollView2"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toEndOf="@+id/startButton"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            android:enabled="@{titleFragmentViewModel.stopButtonVisible}"/>
 
         <ScrollView
             android:id="@+id/scrollView2"
@@ -57,7 +61,7 @@
                     android:id="@+id/sleepHistoryTextView"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="@string/sleepHistoryTextViewText" />
+                    android:text="@{titleFragmentViewModel.nightsString}" />
             </LinearLayout>
         </ScrollView>
 
@@ -68,9 +72,11 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/clearDataButtonText"
+            android:onClick="@{()->titleFragmentViewModel.onClear()}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/scrollView2" />
+            app:layout_constraintTop_toBottomOf="@+id/scrollView2"
+            android:enabled="@{titleFragmentViewModel.clearButtonVisible}"/>
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

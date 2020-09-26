@@ -17,5 +17,12 @@
     <fragment
         android:id="@+id/sleepQuality"
         android:name="com.example.sleeptrackingapp.sleepQualityFragment.SleepQuality"
-        android:label="SleepQuality" />
+        android:label="SleepQuality" >
+        <argument
+            android:name="sleepNightKey"
+            app:argType="long" />
+        <action
+            android:id="@+id/action_sleepQuality_to_mainFragment"
+            app:destination="@id/mainFragment" />
+    </fragment>
 </navigation>
