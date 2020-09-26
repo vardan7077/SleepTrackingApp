@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">SleepTrackingApp</string>
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="startButtonText">START</string>
+    <string name="stopButtonText">STOP</string>
+    <string name="clearDataButtonText">CLEAR</string>
+    <string name="sleepHistoryTextViewText">Here is your sleeping Data</string>
+    <string name="sleepQualityQuastionText">How was your sleep?</string>
+</resources>
