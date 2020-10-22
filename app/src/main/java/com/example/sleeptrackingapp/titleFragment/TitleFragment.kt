@@ -12,6 +12,7 @@ import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
+import com.example.sleeptrackingapp.SleepNightAdapter
 import com.example.sleeptrackingapp.database.SleepDatabase
 import com.example.sleeptrackingapp.databinding.FragmentTitleBinding
 import com.google.android.material.snackbar.Snackbar
@@ -39,7 +40,14 @@ class TitleFragment : Fragment() {
 
         binding.titleFragmentViewModel = viewModel
         binding.lifecycleOwner = this
+        val adapter = SleepNightAdapter()
+        binding.recyclerView.adapter = adapter
 
+        viewModel.nights.observe(viewLifecycleOwner, Observer {
+            it?.let{
+                adapter.submitList(it)
+            }
+        })
         viewModel.navigateToSleepQuality.observe(this, Observer{
             night->
             night?.let{
