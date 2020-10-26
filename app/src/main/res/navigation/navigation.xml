@@ -13,6 +13,9 @@
         <action
             android:id="@+id/action_mainFragment_to_sleepQuality"
             app:destination="@id/sleepQuality" />
+        <action
+            android:id="@+id/action_mainFragment_to_eachItemFragment"
+            app:destination="@id/eachItemFragment" />
     </fragment>
     <fragment
         android:id="@+id/sleepQuality"
@@ -24,5 +27,13 @@
         <action
             android:id="@+id/action_sleepQuality_to_mainFragment"
             app:destination="@id/mainFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/eachItemFragment"
+        android:name="com.example.sleeptrackingapp.eachItemFragment.EachItemFragment"
+        android:label="EachItemFragment" >
+        <argument
+            android:name="NightID"
+            app:argType="long" />
     </fragment>
 </navigation>

@@ -1,7 +1,6 @@
 package com.example.sleeptrackingapp.titleFragment
 
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -12,7 +11,9 @@ import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.GridLayoutManager
 import com.example.sleeptrackingapp.SleepNightAdapter
+import com.example.sleeptrackingapp.SleepNightClickListener
 import com.example.sleeptrackingapp.database.SleepDatabase
 import com.example.sleeptrackingapp.databinding.FragmentTitleBinding
 import com.google.android.material.snackbar.Snackbar
@@ -40,12 +41,29 @@ class TitleFragment : Fragment() {
 
         binding.titleFragmentViewModel = viewModel
         binding.lifecycleOwner = this
-        val adapter = SleepNightAdapter()
+
+        val manager = GridLayoutManager(activity, 3)
+        manager.spanSizeLookup = object : GridLayoutManager.SpanSizeLookup(){
+            override fun getSpanSize(position: Int): Int {
+                return when(position){
+                    0 -> 3
+                    else -> 1
+                }
+            }
+
+        }
+        binding.recyclerView.layoutManager = manager
+
+        val adapter = SleepNightAdapter(SleepNightClickListener {
+            findNavController().navigate(TitleFragmentDirections.actionMainFragmentToEachItemFragment(it))
+        })
         binding.recyclerView.adapter = adapter
+
+
 
         viewModel.nights.observe(viewLifecycleOwner, Observer {
             it?.let{
-                adapter.submitList(it)
+                adapter.addHeaderAndSubmitList(it)
             }
         })
         viewModel.navigateToSleepQuality.observe(this, Observer{
@@ -62,6 +80,8 @@ class TitleFragment : Fragment() {
                 viewModel.doneSnackBar()
             }
         })
+
+
         return binding.root
     }
 

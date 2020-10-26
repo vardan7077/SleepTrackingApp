@@ -33,6 +33,7 @@ class TitleFragmentViewModel(val database:SleepDatabaseDAO, application: Applica
     private fun initializeTonight(){
         uiScope.launch {
             tonight.value = getTonightFromDatabase()
+
         }
     }
 
@@ -51,6 +52,7 @@ class TitleFragmentViewModel(val database:SleepDatabaseDAO, application: Applica
             val newNight = SleepNight()
             insert(newNight)
             tonight.value = getTonightFromDatabase()
+
         }
     }
 
